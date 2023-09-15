@@ -8,21 +8,24 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $weight=$_POST['Weight'];
     $price=$_POST['Price'];
     $desc=$_POST['Description'];
+    $stockQuantity=$_POST['stockQuantity'];
+    $stockStatus='out-of-stock';
+    if(isset($_POST['stockStatus'])){
+        $stockStatus='in-stock';
+    }
     $pathToStore='../files/';
+    $pathToImage=$_FILES['image']['name'];
     if($_FILES['image']){
-        $pathToImage=$_FILES['image']['name'];
-        if(in_array($_FILES['image']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
+        if(in_array($_FILES['image']['type'],array('image/*'))){
             move_uploaded_file($_FILES['image']['tmp_name'],$pathToStore.$pathToImage);
-            $insertQuery="INSERT INTO `products` (Name,Weight,Price,Description,imagepath) values ('$productName',$weight,$price,'$desc','$pathToImage')";
-
-            if(mysqli_query($conn,$insertQuery)){
-                header('Location:products.php');
-            }
         }
     }
-    
-}
+    $insertQuery="INSERT INTO `products` (Name,Weight,Price,Stock,Stock_Status,Description,imagepath) values ('$productName',$weight,$price,$stockQuantity,'$stockStatus','$desc','$pathToImage')";
 
+    if(mysqli_query($conn,$insertQuery)){
+        header('Location:products.php');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +57,14 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     <div class="mb-3 p-1">
         <label for="descInput" class="form-label">Description</label>
         <input type="text" class="form-control" id="placeInput" name="Description">
+    </div>
+    <div class="mb-3 p-1">
+        <label for="stockInput" class="form-label">Stock</label>
+        <input type="number" class="form-control" id="stockInput" name="stockQuantity">
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" name="stockStatus" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">In Stock</label>
     </div>
         <button class="btn btn-primary" type="submit">Add</button>
     </form> 

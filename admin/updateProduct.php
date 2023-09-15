@@ -10,20 +10,30 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $weight=$_POST['Weight'];
     $price=$_POST['Price'];
     $desc=$_POST['Description'];
-    
-    $pathToImage=$_FILES['image']['name'];
-    if($_FILES['image']){
-        $pathToStore='../files/';
-        if(in_array($_FILES['image']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
-            move_uploaded_file($_FILES['image']['tmp_name'],$pathToStore.$pathToImage);
+    $stockQuantity=$_POST['stockQuantity'];
+    $stockStatus='out-of-stock';
+    if(isset($_POST['stockStatus'])){
+        $stockStatus='in-stock';
+    }
+    $pathToImage=$_POST['imageInput'];
+    if(isset($_FILES['image'])){
+
+        if($_FILES['image']){
+            $pathToImage=$_FILES['image']['name'];
+            $pathToStore='../files/';
+            if(in_array($_FILES['image']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
+                move_uploaded_file($_FILES['image']['tmp_name'],$pathToStore.$pathToImage);
+            }
+            $updateQuery="UPDATE `products` SET imagepath='$pathToImage' WHERE id=$id";
         }
-        $updateQuery="UPDATE `products` SET imagepath='$pathToImage' WHERE id=$id";
     }
 
-    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',imagepath='$pathToImage' WHERE id=$id";
+    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',Stock=$stockQuantity,Stock_Status='$stockStatus' WHERE id=$id";
 
     if(mysqli_query($conn,$updateQuery)){
         header('Location:products.php');
+        // echo $updateQuery;
+        // echo "<a href='products.php'>go to products</a>";
     }
 
     }
@@ -49,7 +59,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     <div class="mb-3 p-1">
         <label for="imageInput" class="form-label">Image</label>
         <img src="../files/<?php echo $rows['imagepath'];?>" style="height: 10rem;" id='productImage'>
-        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" value="">
+        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" value="<?php echo $rows['imagepath'];?>">
     </div>
     <div class="mb-3 p-1">
         <label for="nameInput" class="form-label">Product Name</label>
@@ -66,6 +76,14 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     <div class="mb-3 p-1">
         <label for="descInput" class="form-label">Description</label>
         <input type="text" class="form-control" id="placeInput" name="Description" value="<?php echo $rows['Description'];?>">
+    </div>
+    <div class="mb-3 p-1">
+        <label for="stockInput" class="form-label">Stock</label>
+        <input type="number" class="form-control" id="stockInput" name="stockQuantity" value="<?php echo $rows['Stock'];?>">
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" name="stockStatus" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">In Stock</label>
     </div>
         <button class="btn btn-primary" type="submit">Update</button>
     </form> 

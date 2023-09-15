@@ -1,5 +1,11 @@
 <?php
 include('inc.php');
+
+if(isset($_POST['stockStatus'])){
+  echo 'hello';
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -10,30 +16,13 @@ include('inc.php');
     <title>Document</title>
 </head>
 <body>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+  <form method="post" action='test.php'>
+    <div class="form-check form-switch">
+        <input class="form-check-input" value='1' name="stockStatus" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">In Stock</label>
     </div>
-  </div>
-</div>
-<script>
-    
-</script>
+    <button type="submit" name="submit">click</button>
+    </form>
+</body>
+
 </html>

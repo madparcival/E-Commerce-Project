@@ -14,7 +14,7 @@
 <body>
     
     <h1>Available Product</h1>
-    <table class="table table-striped-columns table-striped table-light">
+    <table class="table table-striped-columns table-striped">
   <thead>
     <tr>
       <th scope="col">S.No</th>
@@ -22,6 +22,8 @@
       <th scope="col">Image</th>
       <th scope="col">Weight</th>
       <th scope="col">Price</th>
+      <th scope="col">Stock Quantity</th>
+      <th scope="col">Stock Status</th>
       <th scope="col">Description</th>
       <th scope="col">Update/Delete</th>
     </tr>
@@ -39,6 +41,8 @@
       <td><img class="img img-thumbnail img-fluid" width="100px" src="../files/'.$rows['imagepath'].'" alt="..."></td>
       <td>'.$rows['Weight'].' Gram</td>
       <td>₹'.$rows['Price'].'</td>
+      <td>'.$rows['Stock'].'</td>
+      <td id="Status">'.$rows['Stock_Status'].'</td>
       <td>'.$rows['Description'].'</td>
       <td><a class="btn btn-outline-warning" id="updateBtn" href="updateProduct.php?id='.$rows['id'].'">Change</a><a class="deleteBtn btn btn-outline-danger" id="'.$rows['id'].'">Delete</a></td>
     </tr>';
@@ -54,6 +58,17 @@
 </div>
 <a class="btn btn-primary" href="addproduct.php">Add product</a>
 </body>
+<script>
+  let statusEle=document.querySelectorAll('#Status')
+  for(ele of statusEle){
+    if(ele.innerText=='in-stock'){
+      ele.setAttribute('class','text-bg-success')
+    }
+    else{
+      ele.setAttribute('class','text-bg-warning')
+    }
+  }
+</script>
 
 <script src="js/delete.js"></script>
 </html>
