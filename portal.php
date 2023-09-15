@@ -63,18 +63,19 @@ if(isLoggedIn()){
 </nav>
 <h1>Hello <?php echo $_SESSION['Name'];?></h1>
 <p><a href="portal.php?logout" class="btn btn-dark link-light link-offset-2">Logout</a></p>
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-md-3 g-4 mx-auto">
   
 <?php 
 while($arr=$values->fetch_assoc()){
 echo '<div class="col">
-<div class="card h-100" style="width: 18rem;">
-  <img src="files/'.$arr['imagepath'].'" class="card-img-top" alt="...">
+<div class="card h-100 bg-warning-subtle" style="width: 18rem;">
+  <img src="files/'.$arr['imagepath'].'" class="card-img-top w-50" alt="...">
   <div class="card-body">
     <h5 class="card-title">'.$arr['Name'].'</h5>
     <p class="card-text">'.$arr['Description'].'</p>
     <p class="card-text">₹'.$arr['Price'].'</p>
-    <a href="addtocart.php?id='.$arr['id'].'" class="btn btn-primary">Add to cart</a>
+    <button id="'.$arr['id'].'" class="addToCart btn btn-primary">Add to cart</button>
+    <button id="'.$arr['id'].'" class="order btn btn-success">Place Order</button>
   </div>
 </div>
 </div>';
@@ -83,10 +84,15 @@ echo '<div class="col">
 </div>
     
 </body>
+<script>
+  let userId=<?php echo $_SESSION['id'];?>
+</script>
+<script src="customerjs/placeOrder.js"></script>
+<script src="customerjs/addToCart.js"></script>
 </html>
 
 <?php }else{
     header('location:userlogin.php');    
 
 }
-    ?>
+  ?>

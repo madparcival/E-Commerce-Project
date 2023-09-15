@@ -6,17 +6,27 @@ include('../functions/func.php');
 
 if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $id=$_POST['id'];
-    $filepath=$_FILES['image'];
     $productName=$_POST['Product'];
     $weight=$_POST['Weight'];
     $price=$_POST['Price'];
     $desc=$_POST['Description'];
-    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',imagepath='' WHERE id=$id";
+    
+    $pathToImage=$_FILES['image']['name'];
+    if($_FILES['image']){
+        $pathToStore='../files/';
+        if(in_array($_FILES['image']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
+            move_uploaded_file($_FILES['image']['tmp_name'],$pathToStore.$pathToImage);
+        }
+        $updateQuery="UPDATE `products` SET imagepath='$pathToImage' WHERE id=$id";
+    }
+
+    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',imagepath='$pathToImage' WHERE id=$id";
 
     if(mysqli_query($conn,$updateQuery)){
         header('Location:products.php');
     }
-}
+
+    }
 
     $values=getProductRow($conn,$_GET['id']);
     $rows=$values->fetch_assoc();
@@ -31,14 +41,15 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     <title>Add Product</title>
 </head>
 <body>
-<form action="updateProduct.php" method="post">
+<form action="updateProduct.php" method="post" enctype="multipart/form-data">
     <div class="mb-3 p-1">
         <label for="idInput" class="form-label">ID</label>
         <input type="text" class="form-control" id="idInput" name="id" value="<?php echo $rows['id'];?>">
     </div>
     <div class="mb-3 p-1">
         <label for="imageInput" class="form-label">Image</label>
-        <input type="file" class="form-control" id="imageInput" name="image" value="<?php echo $rows['imagepath'];?>">
+        <img src="../files/<?php echo $rows['imagepath'];?>" style="height: 10rem;" id='productImage'>
+        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image" value="">
     </div>
     <div class="mb-3 p-1">
         <label for="nameInput" class="form-label">Product Name</label>
@@ -59,4 +70,5 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
         <button class="btn btn-primary" type="submit">Update</button>
     </form> 
 </body>
+<script src="js/reflectUploadedFile.js"></script>
 </html>

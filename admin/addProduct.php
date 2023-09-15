@@ -40,7 +40,8 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     </div>
     <div class="mb-3 p-1">
         <label for="imageInput" class="form-label">Product Image</label>
-        <input type="file" class="form-control" id="imageInput" name="image">
+        <img src="" class="border mb-4" style="height: 10rem;" id="productImage">
+        <input type="file" accept="image/*" class="form-control" id="imageInput" name="image">
     </div>
     <div class="mb-3 p-1">
         <label for="weightInput" class="form-label">Weight</label>
@@ -58,6 +59,6 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     </form> 
 </body>
 
-<script src="addImage.js"></script>
+<script src="js/reflectUploadedFile.js"></script>
 
 </html>

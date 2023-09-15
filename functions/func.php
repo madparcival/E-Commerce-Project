@@ -36,6 +36,7 @@ function isAdmin(){
             if($data['Password']==$pass){
                 $_SESSION['loggedIn']=true;
                 $_SESSION['Name']=$data['Name'];
+                $_SESSION['id']=$data['id'];
                 header('Location:portal.php');
             }
             else{

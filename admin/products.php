@@ -55,5 +55,5 @@
 <a class="btn btn-primary" href="addproduct.php">Add product</a>
 </body>
 
-<script src="delete.js"></script>
+<script src="js/delete.js"></script>
 </html>

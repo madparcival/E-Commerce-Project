@@ -11,10 +11,10 @@ if( $r =='DELETE'){
     $dataFromRequest=json_decode(file_get_contents('php://input'),true);
     $selectQuery = "SELECT * FROM `products` WHERE id=$dataFromRequest[id];";
     $result=mysqli_query($conn,$selectQuery);
-    // $deleteQuery="DELETE FROM `products` WHERE id=$dataFromRequest[id];";
+    $deleteQuery="DELETE FROM `products` WHERE id=$dataFromRequest[id];";
     if($result->num_rows ==1){
         $row=$result->fetch_assoc();
-        // mysqli_query($conn,$deleteQuery);
+        mysqli_query($conn,$deleteQuery);
         $data=array("message"=>"Deleted","content"=>$row);
         echo json_encode($data,true);
     }else{
