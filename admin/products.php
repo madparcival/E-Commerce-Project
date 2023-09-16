@@ -14,7 +14,7 @@
 <body>
     
     <h1>Available Product</h1>
-    <table class="table table-striped-columns table-striped">
+    <table class="table table-dark">
   <thead>
     <tr>
       <th scope="col">S.No</th>
