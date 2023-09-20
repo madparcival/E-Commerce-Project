@@ -1,3 +1,6 @@
+// Change this functions
+
+
 
 let allOrderBtn=document.getElementsByClassName('order')
 

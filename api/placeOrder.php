@@ -12,7 +12,6 @@ if( $r =='POST'){
     $productID=$dataFromRequest['pid'];
     $row=getRowFromTable($conn,$productID,'products');
     
-    // $_SESSION[''];
 
     $insertQuery="INSERT INTO `orders` (CustomerID,ProductID,Price,Status) VALUES ($customer,$productID,$row[id],'pending');";
     // mysqli_query($conn,$insertQuery)

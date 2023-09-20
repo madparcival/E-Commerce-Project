@@ -3,6 +3,8 @@
 include('../inc.php');
 include('../functions/func.php');
 
+if(isAdmin()){
+
 
 if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $id=$_POST['id'];
@@ -90,3 +92,11 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
 </body>
 <script src="js/reflectUploadedFile.js"></script>
 </html>
+
+<?php
+
+}else {
+  
+    header('location:adminlogin.php'); 
+     
+   }

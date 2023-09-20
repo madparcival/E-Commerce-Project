@@ -26,6 +26,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
         header('Location:products.php');
     }
 }
+if(isAdmin()){
 ?>
 
 <!DOCTYPE html>
@@ -73,3 +74,13 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
 <script src="js/reflectUploadedFile.js"></script>
 
 </html>
+
+<?php
+
+}else {
+  
+    header('location:adminlogin.php'); 
+     
+   }
+
+?>

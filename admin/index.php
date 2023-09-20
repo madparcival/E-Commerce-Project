@@ -54,18 +54,16 @@ if(isAdmin()){
       <div class="card-img-overlay">
         <h5 class="card-title">Products</h5>
         <p><a class="btn btn-warning" href="products.php">Go to</a></p>
-        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-      </div>
+        </div>
     </div>
   </div>
-  <div class="col">
+  <!-- <div class="col">
     <div class="card text-bg-dark w-75">
       <img src="..." class="card-img" alt="...">
       <div class="card-img-overlay">
         <h5 class="card-title">Users/Customers</h5>
         <p><a class="btn btn-warning" href="#">Go to</a></p>
-        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p> -->
-      </div>
+        </div>
     </div>
   </div>
   <div class="col">
@@ -74,10 +72,9 @@ if(isAdmin()){
       <div class="card-img-overlay">
         <h5 class="card-title">Admin Add/Revoke</h5>
         <p><a class="btn btn-warning" href="#">Go to</a></p>
-        <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
-      </div>
+        </div>
     </div>
-  </div>
+  </div> -->
 </div>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
     include('../inc.php');
-    include('../functions/func.php')
+    include('../functions/func.php');
+    
+if(isAdmin()){
 ?>
 
 <!DOCTYPE html>
@@ -72,3 +74,12 @@
 
 <script src="js/delete.js"></script>
 </html>
+
+<?php
+
+}else {
+  
+  header('location:adminlogin.php'); 
+   
+ }
+ ?>
