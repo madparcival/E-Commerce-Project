@@ -22,6 +22,8 @@ if( $r =='POST'){
         $data=array("status"=>"success","message"=>$rows);
         echo json_encode($data,true);
     }else{
+        
+        header("HTTP/1.1 404");
         $data=array("status"=>"error","message"=>'');
         echo json_encode($data,true); 
     } 
@@ -32,6 +34,7 @@ if( $r =='POST'){
     echo json_encode($data,true);
     }
 }else{
+    // echo 'error';
     header("HTTP/1.1 405");
     $data=array("status"=>"error","Request Method"=>$r,"message"=>"Bad Method");
     echo json_encode($data,true);

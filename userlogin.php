@@ -42,9 +42,11 @@
         </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <a href="signup.php">New User? Register here</a>
         <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
     </form>
     </main>
+    
 
 </body>
 </html>

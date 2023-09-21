@@ -10,13 +10,12 @@ function addQuantityFunctionality(){
         let pid=Number(this.id.replace('cartUpdate_',''))
         console.log(pid)
         let newQuantity=this.previousElementSibling.value
-        const xhr =new XMLHttpRequest()
 
+        const xhr =new XMLHttpRequest()
         xhr.onload=function(){
             let data=this.responseText
             console.log(data)
         }
-
         xhr.open('POST','http://localhost/phpprojects/Ecommerce/api/quantityUpdate.php')
         xhr.setRequestHeader('Content-type','text/json')
         xhr.send(`{

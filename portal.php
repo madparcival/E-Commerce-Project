@@ -8,7 +8,10 @@ if(isset($_GET['logout'])){
     header('location:userlogin.php');
 }
 if(isLoggedIn()){
-    $values=getTableValues($conn,'products'); 
+  $searchQuery="SELECT Profile FROM customers WHERE id=$_SESSION[id];";
+  $result=mysqli_query($conn,$searchQuery);
+  
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +45,12 @@ if(isLoggedIn()){
     </div>
     <h3 class="text-warning">Hello <?php echo $_SESSION['Name'];?></h3>
     <p><a href="portal.php?logout" class="btn btn-secondary link-light link-offset-2">Logout</a></p>
+    <!-- add image source from user profile -->
+    <img src="files/profileimgs/<?php
+    if($result->num_rows>0){
+      $ProfileArray=$result->fetch_assoc();
+      echo $ProfileArray['Profile'];
+    }  ?>" alt="...">
     <!-- navbar cart -->
     <button class="navbar-toggler" id="cartBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -64,6 +73,8 @@ if(isLoggedIn()){
 <div class="row row-cols-2 row-cols-md-3 g-4 mx-auto">
   
 <?php 
+
+$values=getTableValues($conn,'products'); 
 while($arr=$values->fetch_assoc()){
   echo '<div class="col">
   <div class="card h-100 bg-warning-subtle" style="width: 18rem;">

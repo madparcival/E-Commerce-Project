@@ -23,5 +23,6 @@ function addToCart(pid,cid){
     }`)
     xhr.onload=function(){
         data=JSON.parse(this.responseText)
+        
     }
 }

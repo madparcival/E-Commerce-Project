@@ -10,7 +10,7 @@ include('inc.php');
         $profilePath="files/profileimgs/";
         $targetfile=$_FILES["Profile"]["name"];
         if($_FILES['Profile']){
-            if(in_array($_FILES['image']['type'],array('image/*'))){
+            if(in_array($_FILES['Profile']['type'],array('image/*'))){
                 move_uploaded_file($_FILES['Profile']['name'],$profilePath.$targetfile);
             }
         }
@@ -18,9 +18,10 @@ include('inc.php');
         $result=mysqli_query($conn,$searchQuery);
         if($result->num_rows == 0){
         $insertQuery="INSERT INTO `customers` (Name,Mobile,Email,Password,Profile) VALUES ('$name','$mob','$mail','$pass','$targetfile');";
-
-        if(mysqli_query($conn,$insertQuery)){
-            header('Location:userlogin.php');
+        // mysqli_query($conn,$insertQuery)
+        if(true){
+            print_r($_FILES['Profile']);
+            // header('Location:userlogin.php');
         }
         else{
             echo 'Not inserted';
@@ -28,8 +29,6 @@ include('inc.php');
         else{
             echo 'Already Present';
         }
-
-
     }
 ?>
 
@@ -40,16 +39,16 @@ include('inc.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
     <style>
-        /* .glass{
+        .glass{
             background-repeat: no-repeat;
             background-image: url('files/pageimgs/ecommerce-2607114_1280.jpg');
-            filter: brightness(50%);
+            /* filter: brightness(50%); */
         }
         .myform{
             backdrop-filter: blur(4px);
-            background-color: #ffffff80;
-            filter: brightness(100%);
-        } */
+            background-color: #f7f7f7b5;
+
+        }
     </style>
 </head>
 <body>
@@ -77,7 +76,7 @@ include('inc.php');
             <label for="passwordInput" class="form-label">Password</label>
             <input type="password" minlength="8" class="form-control" id="passwordInput" name="Password" required>
         </div>
-            <button class="btn btn-primary" type="submit">Add</button>
+            <button class="btn btn-primary" type="submit">Sign-Up</button>
         </form>    
     </div>
 </body>
