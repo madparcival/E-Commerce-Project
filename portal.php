@@ -17,6 +17,7 @@ if(isLoggedIn()){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamazon</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> 
 </head>
 <body>
     
@@ -26,7 +27,7 @@ if(isLoggedIn()){
     <a class="navbar-brand" href="#">Hamazon</a>
     
     <!-- off canvas -->
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Search</button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-search"></i></button>
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Search</h5>
@@ -36,7 +37,7 @@ if(isLoggedIn()){
         <input class="form-control me-2" type="search" id="searchBtn" placeholder="Search" aria-label="Search">
       </form>
       <div class="offcanvas-body" id="searchOutput">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
+        <p>Search the Hamazon</p>
       </div>
     </div>
     <!-- navbar cart -->
@@ -85,6 +86,9 @@ while($arr=$values->fetch_assoc()){
 <script src="customerjs/placeOrder.js"></script>
 <script src="customerjs/addToCart.js"></script>
 <script src="customerjs/getCartItems.js"></script>
+<script src="customerjs/cartQuantity.js"></script>
+<script src="customerjs/deleteCartProduct.js"></script>
+
 </html>
 
 <?php }else{

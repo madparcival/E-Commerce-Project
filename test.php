@@ -23,6 +23,7 @@ if(isset($_POST['stockStatus'])){
     </div>
     <button type="submit" name="submit">click</button>
     </form>
+    <div class="btn btn-primary">update</div>
 </body>
 
 </html>

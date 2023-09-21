@@ -17,7 +17,7 @@ function getCartElements(cid){
         data=JSON.parse(this.responseText)
 
         for(ele of data['message']){
-            tempDiv+=`<div class="card mb-3" style="max-width: 540px;">
+            tempDiv+=`<div class="card mb-3" id="cartProduct_${ele['ProductID']}" style="max-width: 540px;">
             <div class="row g-0">
               <div class="col-md-4">
                 <img src="files/${ele['imagepath']}" class="img-fluid rounded-start" alt="...">
@@ -26,7 +26,11 @@ function getCartElements(cid){
                 <div class="card-body">
                   <h5 class="card-title">${ele['Name']}</h5>
                   <p class="card-text">₹${ele['Amount']}</p>
-                  <p class="card-text">Quantity: ${ele['Quantity']} Nos.</p>
+                  <div class="quantityInput">
+                    Quantity:<input type="number"  name="" id="" value=${ele['Quantity']}>
+                    <button class="cartUpdateButton btn btn-primary" id="cartUpdate_${ele['ProductID']}">Update</button>
+                    <button class="cartDeleteButton btn btn-danger" id="cartDelete_${ele['ProductID']}">Delete</button>
+                    </div>
                 </div>
               </div>
             </div>
@@ -34,5 +38,10 @@ function getCartElements(cid){
         }
         tempDiv+='</div>'
         cart.innerHTML=tempDiv
+
+        // adding quantity functionality
+
+        addQuantityFunctionality()
+        addDeleteFunctionality()
     }
 }

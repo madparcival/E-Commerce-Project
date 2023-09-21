@@ -8,9 +8,13 @@ function getProduct(){
 
     xhr.onload=function(){
         let data=JSON.parse(this.responseText)
+        let temp='<div class="list-group">'
         for (row of data['message']){
-            searchResults.innerText=row['Name']
+            temp+=`<a href="#${row['id']}" class="list-group-item list-group-item-action">${row['Name']}</a>`
+            console.log(row)
         }
+        temp+='</div>'
+        searchResults.innerHTML=temp
     }
 
     xhr.open('POST','http://localhost/phpprojects/Ecommerce/api/searchProduct.php')
