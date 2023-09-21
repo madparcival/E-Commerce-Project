@@ -14,6 +14,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $desc=$_POST['Description'];
     $stockQuantity=$_POST['stockQuantity'];
     $stockStatus='out-of-stock';
+    $modifier=$_SESSION['Name'];
     if(isset($_POST['stockStatus'])){
         $stockStatus='in-stock';
     }
@@ -30,7 +31,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
         }
     }
 
-    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',Stock=$stockQuantity,Stock_Status='$stockStatus' WHERE id=$id";
+    $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',Stock=$stockQuantity,Stock_Status='$stockStatus',last_modified='$modifier' WHERE id=$id";
 
     if(mysqli_query($conn,$updateQuery)){
         header('Location:products.php');

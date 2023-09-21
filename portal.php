@@ -22,8 +22,8 @@ if(isLoggedIn()){
 <body>
     
 <!-- slide bar -->
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
+<nav class="navbar navbar-dark bg-dark mb-3">
+  <div class="container-fluid px-3">
     <a class="navbar-brand" href="#">Hamazon</a>
     
     <!-- off canvas -->
@@ -40,6 +40,8 @@ if(isLoggedIn()){
         <p>Search the Hamazon</p>
       </div>
     </div>
+    <h3 class="text-warning">Hello <?php echo $_SESSION['Name'];?></h3>
+    <p><a href="portal.php?logout" class="btn btn-secondary link-light link-offset-2">Logout</a></p>
     <!-- navbar cart -->
     <button class="navbar-toggler" id="cartBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -56,8 +58,9 @@ if(isLoggedIn()){
     </div>
   </div>
 </nav>
-<h1>Hello <?php echo $_SESSION['Name'];?></h1>
-<p><a href="portal.php?logout" class="btn btn-dark link-light link-offset-2">Logout</a></p>
+<div class="profile text-end">
+
+</div>
 <div class="row row-cols-2 row-cols-md-3 g-4 mx-auto">
   
 <?php 

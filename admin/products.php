@@ -28,6 +28,7 @@ if(isAdmin()){
       <th scope="col">Stock Status</th>
       <th scope="col">Description</th>
       <th scope="col">Update/Delete</th>
+      <th scope="col">Last Modified By</th>
     </tr>
   </thead>
   <tbody>
@@ -47,6 +48,7 @@ if(isAdmin()){
       <td id="Status">'.$rows['Stock_Status'].'</td>
       <td>'.$rows['Description'].'</td>
       <td><a class="btn btn-outline-warning" id="updateBtn" href="updateProduct.php?id='.$rows['id'].'">Change</a><a class="deleteBtn btn btn-outline-danger" id="'.$rows['id'].'">Delete</a></td>
+      <td>'.$rows['last_modified'].'</td>
     </tr>';
     $counter++;
     ?>

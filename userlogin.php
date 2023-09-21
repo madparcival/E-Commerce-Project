@@ -21,17 +21,31 @@
     <title>Login</title>
 </head>
 <body>
+    <main class="form-signin w-25 m-auto pt-5">
     <form action="userlogin.php" method="post">
-    <div class="mb-3 p-1">
-        <label for="mailInput" class="form-label">Mail</label>
-        <input type="email" class="form-control" id="mailInput" name="Email" required>
-    </div>
-    <div class="mb-3 p-1">
+        <img class="mb-4 rounded-circle" src="files/pageimgs/user-login.png" alt="" height="57">
+        <h1 class="h3 mb-3 fw-normal">User sign in</h1>
+
+        <div class="form-floating">
+        <input type="email" class="form-control" id="mailInput" name="Email" required placeholder="name@example.com">
+        <label for="mailInput" class="form-label">Email address</label>
+        </div>
+        <div class="form-floating">
+        <input type="password" class="form-control" id="passwordInput" placeholder="Password" name="Password" required>
         <label for="passwordInput" class="form-label">Password</label>
-        <input type="password" minlength="8" class="form-control" id="passwordInput" name="Password" required>
-    </div>
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>    
+        </div>
+
+        <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+        </label>
+        </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+    </form>
+    </main>
+
 </body>
 </html>
 
