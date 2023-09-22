@@ -1,9 +1,6 @@
 <?php
 include('inc.php');
 
-if(isset($_POST['stockStatus'])){
-  echo 'hello';
-}
 
 
 ?>
@@ -16,14 +13,32 @@ if(isset($_POST['stockStatus'])){
     <title>Document</title>
 </head>
 <body>
-  <form method="post" action='test.php'>
-    <div class="form-check form-switch">
-        <input class="form-check-input" value='1' name="stockStatus" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">In Stock</label>
+<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <button type="submit" name="submit">click</button>
-    </form>
-    <div class="btn btn-primary">update</div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
 </body>
+<script>
+  const toastTrigger = document.getElementById('liveToastBtn')
+  const toastLiveExample = document.getElementById('liveToast')
+
+  if (toastTrigger) {
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+      toastBootstrap.show()
+    })
+  }
+</script>
 
 </html>

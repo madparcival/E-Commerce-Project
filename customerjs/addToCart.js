@@ -1,8 +1,12 @@
 
 let allAddToCartBtn=document.getElementsByClassName('addToCart')
+const toastLiveExample = document.getElementById('liveToast')
+console.log(toastLiveExample)
+
 
 for(ele of allAddToCartBtn){
     ele.addEventListener('click',function(){
+        
         addToCart(this.id,userId)
         let myCartBtn=this
         myCartBtn.innerText='Added to cart'
@@ -23,6 +27,8 @@ function addToCart(pid,cid){
     }`)
     xhr.onload=function(){
         data=JSON.parse(this.responseText)
-        
+        toastLiveExample.lastElementChild.innerText=data['message']
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        toastBootstrap.show()
     }
 }
