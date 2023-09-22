@@ -25,7 +25,7 @@
     <main class="form-signin w-25 m-auto pt-5">
         <form action="adminlogin.php" method="post">
             <img class="mb-4" src="../files/pageimgs/admin.png" alt="" height="57">
-            <h1 class="h3 mb-3 fw-normal">User sign in</h1>
+            <h1 class="h3 mb-3 fw-normal">Admin sign in</h1>
 
             <div class="form-floating">
             <input type="email" class="form-control" id="mailInput" name="Email" required placeholder="name@example.com">

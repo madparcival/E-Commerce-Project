@@ -8,24 +8,27 @@ include('inc.php');
         $name=$_POST['Name'];
         $searchQuery="SELECT * FROM `customers` where Email='$mail';";
         $profilePath="files/profileimgs/";
-        $targetfile=$_FILES["Profile"]["name"];
-        if($_FILES['Profile']){
-            if(in_array($_FILES['Profile']['type'],array('image/*'))){
-                move_uploaded_file($_FILES['Profile']['name'],$profilePath.$targetfile);
+        $targetfile="";
+        if(isset($_FILES['Profile'])){
+            $targetfile=$_FILES["Profile"]["name"];
+            $profilePath="files/profileimgs/";
+            if($_FILES['Profile']){
+                if(in_array($_FILES['Profile']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
+                    move_uploaded_file($_FILES['Profile']['tmp_name'],$profilePath.$targetfile);
+                }
             }
         }
-
         $result=mysqli_query($conn,$searchQuery);
         if($result->num_rows == 0){
-        $insertQuery="INSERT INTO `customers` (Name,Mobile,Email,Password,Profile) VALUES ('$name','$mob','$mail','$pass','$targetfile');";
-        // mysqli_query($conn,$insertQuery)
-        if(true){
-            print_r($_FILES['Profile']);
-            // header('Location:userlogin.php');
-        }
-        else{
-            echo 'Not inserted';
-        }}
+            $insertQuery="INSERT INTO `customers` (Name,Mobile,Email,Password,Profile) VALUES ('$name','$mob','$mail','$pass','$targetfile');";
+            // mysqli_query($conn,$insertQuery)
+            if(mysqli_query($conn,$insertQuery)){
+                print_r($_FILES['Profile']);
+                header('Location:userlogin.php');
+            }
+            else{
+                echo 'Not inserted';
+            }}
         else{
             echo 'Already Present';
         }

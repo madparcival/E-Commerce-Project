@@ -37,7 +37,7 @@ if(isAdmin() && $_SESSION['Name']=='root'){
       echo '<tr>
       <th scope="row">'.$counter.'</th>
       <td>'.$rows['Name'].'</td>
-      <td><img class="img img-thumbnail img-fluid" width="100px" src="../files/'.$rows['Profile'].'" alt="..."></td>
+      <td><img class="img img-thumbnail img-fluid" width="100px" src="imgs/profiles/'.$rows['Profile'].'" alt="..."></td>
       <td>'.$rows['Email'].'</td>
       <td>'.$rows['Mobile'].'</td>
       <td>Crud</td>
@@ -52,7 +52,7 @@ if(isAdmin() && $_SESSION['Name']=='root'){
 <div class="messages">
 
 </div>
-<a class="btn btn-primary" href="addproduct.php">Add product</a>
+<a class="btn btn-primary" href="addAdmin.php">Add Admin</a>
 </body>
 <script>
   

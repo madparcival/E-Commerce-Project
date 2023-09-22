@@ -27,7 +27,7 @@ function getCartElements(cid){
                   <h5 class="card-title">${ele['Name']}</h5>
                   <p class="card-text">₹${ele['Amount']}</p>
                   <div class="quantityInput">
-                    Quantity:<input type="number"  name="" id="" value=${ele['Quantity']}>
+                    Quantity:<input type="number" min="1" name="" id="" value=${ele['Quantity']}>
                     <button class="cartUpdateButton btn btn-primary" id="cartUpdate_${ele['ProductID']}">Update</button>
                     <button class="cartDeleteButton btn btn-danger" id="cartDelete_${ele['ProductID']}">Delete</button>
                     </div>

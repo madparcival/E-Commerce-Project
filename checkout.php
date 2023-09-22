@@ -2,6 +2,9 @@
 
 include('inc.php');
 include('functions/func.php');
+
+
+
 if(isLoggedIn()){
     
 $selectQuery="SELECT * FROM customers WHERE id=$_SESSION[id]";
@@ -114,7 +117,7 @@ $result=$conn->query($selectQuery);
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="d-block mx-auto mb-4 rounded border border-3" src="files/pageimgs/ecommerce-2607114_1280.jpg" alt="" height="100">
       <h2>Checkout form</h2>
     </div>
 
@@ -141,41 +144,49 @@ $result=$conn->query($selectQuery);
               }
           ?>
           <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-            <div class="text-success">
+            <div class="text-warning">
               <h6 class="my-0">Delivery Charges</h6>
               <small></small>
             </div>
-            <span class="text-success">−<?php echo $charges=100?> </span>
+            <span class="text-danger"><?php echo $charges=100?> </span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (INR)</span>
-            <strong>₹<?php echo $total-$charges?></strong>
+            <strong>₹<?php echo $total+$charges?></strong>
           </li>
         </ul>
 
-        <form class="card p-2">
+        <!-- <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code">
             <button type="submit" class="btn btn-secondary">Redeem</button>
           </div>
-        </form>
+        </form> -->
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Billing address</h4>
-        <form class="needs-validation" novalidate>
+        <!-- form start -->
+        <form class="needs-validation" action="order.php" method="post" novalidate>
           <div class="row g-3">
             <div class="col-sm-6">
-              <label for="firstName" class="form-label">Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo $userData['Name']?>" required>
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" name="fname" class="form-control" id="firstName" placeholder="" value="<?php echo $userData['Name']?>" required>
               <div class="invalid-feedback">
                 Valid first name is required.
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" name="lname" class="form-control" id="lastName" placeholder="" value="<?php echo $userData['last_name']?>">
+              <div class="invalid-feedback">
+                Valid Last name is required.
               </div>
             </div>
 
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<?php echo $userData['Email']?>">
+              <input type="email" name="mailid" class="form-control" id="email" placeholder="you@example.com" value="<?php echo $userData['Email']?>">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -183,7 +194,7 @@ $result=$conn->query($selectQuery);
 
             <div class="col-12">
               <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" value="" required>
+              <input type="text" name="Address" class="form-control" id="address" value="<?php echo $userData['Address']?>" required>
               <div class="invalid-feedback">
                 Please enter your shipping address.
               </div>
@@ -191,14 +202,14 @@ $result=$conn->query($selectQuery);
 
             <div class="col-12">
               <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              <input type="text" name="address2" class="form-control" id="address2" value="<?php echo $userData['Address2']?>" placeholder="Apartment or suite">
             </div>
 
             <div class="col-md-5">
               <label for="country" class="form-label">Country</label>
-              <select class="form-select" id="country" required>
+              <select name="country" class="form-select" id="country" required>
                 <option value="">Choose...</option>
-                <option>United States</option>
+                <option value="India">India</option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid country.
@@ -207,9 +218,10 @@ $result=$conn->query($selectQuery);
 
             <div class="col-md-4">
               <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
+              <select name="state" class="form-select" id="state" required>
                 <option value="">Choose...</option>
-                <option>California</option>
+                <option value="KA">Karntaka</option>
+                <option value="TN">Tamilnadu</option>
               </select>
               <div class="invalid-feedback">
                 Please provide a valid state.
@@ -218,14 +230,14 @@ $result=$conn->query($selectQuery);
 
             <div class="col-md-3">
               <label for="zip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <input name="postal" type="text" value="<?php echo $userData['Pincode']?>" class="form-control" id="zip" placeholder="" required>
               <div class="invalid-feedback">
                 Zip code required.
               </div>
             </div>
           </div>
 
-          <hr class="my-4">
+          <!-- <hr class="my-4"> -->
 
           <!-- <div class="form-check">
             <input type="checkbox" class="form-check-input" id="same-address">
@@ -239,7 +251,7 @@ $result=$conn->query($selectQuery);
 
           <!-- <hr class="my-4"> -->
 
-          <h4 class="mb-3">Payment</h4>
+          <!-- <h4 class="mb-3">Payment</h4>
 
           <div class="my-3">
             <div class="form-check">
@@ -254,9 +266,9 @@ $result=$conn->query($selectQuery);
               <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
               <label class="form-check-label" for="paypal">PayPal</label>
             </div>
-          </div>
+          </div> -->
 
-          <div class="row gy-3">
+          <!-- <div class="row gy-3">
             <div class="col-md-6">
               <label for="cc-name" class="form-label">Name on card</label>
               <input type="text" class="form-control" id="cc-name" placeholder="" required>
@@ -289,12 +301,13 @@ $result=$conn->query($selectQuery);
                 Security code required
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <hr class="my-4">
+          <!-- <hr class="my-4"> -->
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" name="Submit" type="submit">Place Order</button>
         </form>
+        <!-- form end -->
       </div>
     </div>
   </main>

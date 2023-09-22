@@ -21,12 +21,10 @@ if(isAdmin()){
     }
     
     .card-img-overlay{
-      width: 40%;
-      height: 40%;
+      height: 60%;
       border: white solid 2px;
-      padding: 10px;
       background-color: rgb(255, 255, 255,0.5);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
@@ -80,9 +78,9 @@ if(isAdmin()){
   ?>
   <div class="col">
     <div class="card text-bg-dark w-75">
-      <img src="" class="card-img" alt="...">
+      <img src="imgs/admin.jpg" class="card-img" alt="...">
       <div class="card-img-overlay">
-        <h5 class="card-title">Admin Add/Revoke</h5>
+        <h5 class="card-title text-dark">Admin Add/Revoke</h5>
         <p><a class="btn btn-warning" href="admins.php">Go to</a></p>
       </div>
     </div>

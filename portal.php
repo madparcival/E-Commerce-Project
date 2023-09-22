@@ -64,6 +64,7 @@ if(isLoggedIn()){
         
         
       </div>
+        <a class="btn btn-success border-1" href="checkout.php">Proceed to Checkout</a>
     </div>
   </div>
 </nav>

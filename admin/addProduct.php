@@ -16,7 +16,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $pathToStore='../files/';
     $pathToImage=$_FILES['image']['name'];
     if($_FILES['image']){
-        if(in_array($_FILES['image']['type'],array('image/*'))){
+        if(in_array($_FILES['image']['type'],array('image/jpeg','image/png','image/gif','image/jpg','image/webp'))){
             move_uploaded_file($_FILES['image']['tmp_name'],$pathToStore.$pathToImage);
         }
     }
