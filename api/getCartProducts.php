@@ -10,7 +10,7 @@ if( $r =='POST'){
     $dataFromRequest=json_decode(file_get_contents('php://input'),true);
     $customer=$dataFromRequest['cid'];
     
-    $selectQuery="SELECT ProductID,products.Name,products.imagepath,Amount,Quantity FROM `carts`
+    $selectQuery="SELECT ProductID,products.Name,products.imagepath,Stock,Amount,Quantity FROM `carts`
     INNER JOIN products
     ON carts.ProductID=products.id
     WHERE CustomerID=$customer AND Status='in-cart';";

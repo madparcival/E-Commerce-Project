@@ -7,15 +7,12 @@ include('functions/func.php');
 
 if(isLoggedIn()){
     
-$selectQuery="SELECT * FROM customers WHERE id=$_SESSION[id]";
-$userData=mysqli_fetch_assoc($conn->query($selectQuery));
+  $selectQuery="SELECT * FROM customers WHERE id=$_SESSION[id]";
+  $userData=mysqli_fetch_assoc($conn->query($selectQuery));
 
-
-$selectQuery="SELECT products.name,products.price,products.weight,carts.Quantity FROM carts INNER JOIN products on carts.ProductID=products.id  WHERE CustomerID=$_SESSION[id] AND products.Stock_Status='in-stock'";
-$result=$conn->query($selectQuery);
-
-
-
+  $selectQuery="SELECT carts.id,products.name,products.price,products.weight,carts.Quantity FROM carts INNER JOIN products on carts.ProductID=products.id  WHERE CustomerID=$_SESSION[id] AND carts.Status='in-cart' AND products.Stock_Status='in-stock'";
+  $result=$conn->query($selectQuery);
+  
 
 ?>
 
@@ -308,11 +305,18 @@ $result=$conn->query($selectQuery);
           <button class="w-100 btn btn-primary btn-lg" name="Submit" type="submit">Place Order</button>
         </form>
         <!-- form end -->
+        
       </div>
     </div>
   </main>
 
   <?php
+  // ProductID,products.name,products.price,products.weight,carts.Quantity
+  $selectQuery="SELECT carts.id as cart_id,products.id as pid,products.Name,products.price,products.Stock,carts.Quantity FROM carts INNER JOIN products on carts.ProductID=products.id  WHERE CustomerID=$_SESSION[id] AND carts.Status='in-cart' AND products.Stock_Status='in-stock'";
+  
+  $resultCopy=$conn->query($selectQuery);
+  $data=$resultCopy->fetch_all(MYSQLI_ASSOC);
+  $_SESSION['checkoutData']=$data;
   include('footer.php');
   ?>
 </div>

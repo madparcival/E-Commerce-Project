@@ -47,7 +47,10 @@ if(isAdmin()){
       <div class="card-img-overlay">
         <h5 class="card-title">Orders
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-           99+
+           <?php
+           $selectQuery="SELECT COUNT(id) FROM `orders` WHERE Status='order-confirmed';";
+           echo mysqli_fetch_array(mysqli_query($conn,$selectQuery))[0]; 
+           ?>
           </span>
         </h5>
         <p><a class="btn btn-warning" href="#">Go to</a></p>  

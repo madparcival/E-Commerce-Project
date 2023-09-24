@@ -46,7 +46,7 @@ if(isLoggedIn()){
     <h3 class="text-warning">Hello <?php echo $_SESSION['Name'];?></h3>
     <p><a href="portal.php?logout" class="btn btn-secondary link-light link-offset-2">Logout</a></p>
     <!-- add image source from user profile -->
-    <img src="files/profileimgs/<?php
+    <img class="rounded-circle object-fit-contain" width="60" height="60" src="files/profileimgs/<?php
     if($result->num_rows>0){
       $ProfileArray=$result->fetch_assoc();
       echo $ProfileArray['Profile'];
@@ -105,7 +105,10 @@ while($arr=$values->fetch_assoc()){
     </div>
   </div>
 </div>
-    
+
+<?php
+include('footer.php');
+    ?>
 </body>
 <script>
   let userId=<?php echo $_SESSION['id'];?>
