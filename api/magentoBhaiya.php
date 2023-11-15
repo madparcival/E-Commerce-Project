@@ -1,6 +1,9 @@
 <?php
 
 include('apiconn.php');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Origin,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 $requestType = $_SERVER['REQUEST_METHOD'];
 if( $requestType =='POST'){
 
@@ -10,10 +13,7 @@ if( $requestType =='POST'){
     $dataFromRequest=json_decode(file_get_contents('php://input'),true);
     $customer=$dataFromRequest['cid'];
     
-    $selectQuery="SELECT ProductID,products.Name,products.Stock_Status,products.imagepath,Stock,Amount,Quantity FROM `carts`
-    INNER JOIN products
-    ON carts.ProductID=products.id
-    WHERE CustomerID=$customer AND Status='in-cart';";
+    $selectQuery="SELECT Name,last_name FROM `customers` WHERE id=$customer";
     
     $result=mysqli_query($conn,$selectQuery);
     
@@ -24,7 +24,7 @@ if( $requestType =='POST'){
     }else{
         
         header("HTTP/1.1 404");
-        $data=array("status"=>"error","message"=>'');
+        $data=array("status"=>"error","message"=>'No user');
         echo json_encode($data,true); 
     } 
     }

@@ -1,8 +1,8 @@
 <?php
 
 include('apiconn.php');
-$r= $_SERVER['REQUEST_METHOD'];
-if( $r =='POST'){
+$requestType = $_SERVER['REQUEST_METHOD'];
+if( $requestType =='POST'){
 
     header('Content-Type: text/json');
     if(file_get_contents('php://input')){
@@ -23,6 +23,6 @@ if( $r =='POST'){
     }
 }else{
     header("HTTP/1.1 405");
-    $data=array("status"=>"error","Request Method"=>$r,"message"=>"Bad Method");
+    $data=array("status"=>"error","Request Method"=>$requestType,"message"=>"Bad Method");
     echo json_encode($data,true);
 }

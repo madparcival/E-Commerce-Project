@@ -12,9 +12,11 @@ function getCartElements(cid){
         "cid":${cid}
     }`)
     xhr.onload=function(){
+
         let cart=document.getElementById('cartDiv')
         let tempDiv='<div>'
-        data=JSON.parse(this.responseText)
+        let data=JSON.parse(this.responseText)
+        console.log(data)
 
         for(ele of data['message']){
             tempDiv+=`<div class="card mb-3" id="cartProduct_${ele['ProductID']}" style="max-width: 540px;">
@@ -26,6 +28,7 @@ function getCartElements(cid){
                 <div class="card-body">
                   <h5 class="card-title">${ele['Name']}</h5>
                   <p class="card-text">₹${ele['Amount']}</p>
+                  <p class="card-text">${ele['Stock_Status']}</p>
                   <div class="quantityInput">
                     Quantity:<input type="number" min="1" max="${ele['Stock']}" name="" id="" value=${ele['Quantity']}>
                     <button class="cartUpdateButton btn btn-primary" id="cartUpdate_${ele['ProductID']}">Update</button>

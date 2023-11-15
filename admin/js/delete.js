@@ -20,13 +20,24 @@ function deleteProduct(id){
     console.log(id)
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
-
-      let mydiv=document.createElement('div')
-      mydiv.setAttribute('class','alert alert-warning')
-      mydiv.setAttribute('role','alert')
       let data=JSON.parse(this.responseText)
-      mydiv.innerText=data['content']['Name']+' '+data['message']
-      document.getElementsByClassName('messages')[0].appendChild(mydiv)
+      console.log(data)
+      if(data['status'] =='success'){
+        let mydiv=document.createElement('div')
+        mydiv.setAttribute('class','alert alert-warning')
+        mydiv.setAttribute('role','alert')
+        mydiv.innerText=data['content']['Name']+' '+data['message']
+        document.getElementsByClassName('messages')[0].appendChild(mydiv)
+      }
+      else{
+        let mydiv=document.createElement('div')
+        mydiv.setAttribute('class','alert alert-warning')
+        mydiv.setAttribute('role','alert')
+        
+        mydiv.innerText=data['status']+':'+data['message']
+        document.getElementsByClassName('messages')[0].appendChild(mydiv)
+
+      }
     }
     xhttp.open("DELETE", "http://localhost/phpprojects/Ecommerce/api/deleteProduct.php");
     xhttp.setRequestHeader("Content-type", "application/json");

@@ -67,7 +67,7 @@ if(isAdmin() && $_SESSION['Name']=='root'){
             <label for="nameInput" class="form-label">Name</label>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="mobileInput" name="Mobile" placeholder="Mobile">
+            <input type="number" class="form-control" id="mobileInput" name="Mobile" placeholder="Mobile">
             <label for="mobileInput" class="form-label">Mobile Number</label>
         </div>
         <div class="form-floating mb-3">

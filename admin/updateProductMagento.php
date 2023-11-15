@@ -3,8 +3,6 @@
 include('../inc.php');
 include('../functions/func.php');
 
-if(isAdmin()){
-
 
 if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $id=$_POST['id'];
@@ -34,7 +32,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $updateQuery="UPDATE `products` SET Name='$productName' ,Weight=$weight,Price=$price,Description='$desc',Stock=$stockQuantity,Stock_Status='$stockStatus',last_modified='$modifier' WHERE id=$id";
 
     if(mysqli_query($conn,$updateQuery)){
-        header('Location:products.php');
+        header('Location:http://haarish.magento.com/productmodule/hysteresistask/productcrud');
         // echo $updateQuery;
         // echo "<a href='products.php'>go to products</a>";
     }
@@ -54,7 +52,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     <title>Update Product</title>
 </head>
 <body>
-<form action="updateProduct.php" method="post" enctype="multipart/form-data">
+<form action="updateProductMagento.php" method="post" enctype="multipart/form-data">
     <div class="mb-3 p-1">
         <label for="idInput" class="form-label">ID</label>
         <input type="text" class="form-control" id="idInput" name="id" value="<?php echo $rows['id'];?>">
@@ -96,8 +94,4 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
 
 <?php
 
-}else {
-  
-    header('location:adminlogin.php'); 
-     
-   }
+

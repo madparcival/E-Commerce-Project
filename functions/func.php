@@ -77,10 +77,15 @@ function isAdmin(){
     function getProductRow($conn,$id){
         $select_query="Select * from products where id=$id";
         $result=mysqli_query($conn,$select_query);
-        return $result;
+        return $result->fetch_assoc();
     }
 
-    
+    function getTableValuesFromID($conn,$table,$id){
+    $select_query="Select * from $table where id=$id";
+    $result=mysqli_query($conn,$select_query);
+    return $result->fetch_assoc();
+}
+
     
 
 ?>

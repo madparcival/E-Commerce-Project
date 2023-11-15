@@ -16,8 +16,8 @@ if(isAdmin()){
 <body>
     
     <h1>Available Product</h1>
-    <table class="table table-dark">
-  <thead>
+    <table class="table table-light table-hover table-responsive-l">
+  <thead class="table-dark">
     <tr>
       <th scope="col">S.No</th>
       <th scope="col">Name</th>
@@ -36,7 +36,7 @@ if(isAdmin()){
     <?php 
 
     $values=getTableValues($conn,'products');
-  $counter=1;
+    $counter=1;
     while($rows=$values->fetch_assoc()){
       echo '<tr>
       <th scope="row">'.$counter.'</th>

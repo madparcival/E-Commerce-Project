@@ -13,6 +13,7 @@ if(isLoggedIn()){
   $selectQuery="SELECT carts.id,products.name,products.price,products.weight,carts.Quantity FROM carts INNER JOIN products on carts.ProductID=products.id  WHERE CustomerID=$_SESSION[id] AND carts.Status='in-cart' AND products.Stock_Status='in-stock'";
   $result=$conn->query($selectQuery);
   
+  
 
 ?>
 
@@ -117,7 +118,10 @@ if(isLoggedIn()){
       <img class="d-block mx-auto mb-4 rounded border border-3" src="files/pageimgs/ecommerce-2607114_1280.jpg" alt="" height="100">
       <h2>Checkout form</h2>
     </div>
-
+<?php
+if($result->num_rows !=0){
+  ?>
+    
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -317,7 +321,15 @@ if(isLoggedIn()){
   $resultCopy=$conn->query($selectQuery);
   $data=$resultCopy->fetch_all(MYSQLI_ASSOC);
   $_SESSION['checkoutData']=$data;
+
+            }
+            else{
+              echo '<h1>No Items to order</h1>
+              <p>Only <b>In-stock</b> items will be added to order. Check Cart for <b>stock status</b></p>
+              <p><a href="portal.php">click here</a> to go to Homepage</p>';
+            }
   include('footer.php');
+  
   ?>
 </div>
   

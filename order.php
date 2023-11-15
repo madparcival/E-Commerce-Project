@@ -51,6 +51,7 @@ if(isset($_POST['Submit'])){
             </div>
             <div class="right float-end">
                 <div class="orderImage text-end">
+                    <h5><?php echo date('Y-m-d');?></h5>
                     <h5>OrderID:<?php echo $orderId; ?></h5>
                     <img src="files/pageimgs/user-login.png" height="100px" alt="">
                 </div>
@@ -78,9 +79,9 @@ if(isset($_POST['Submit'])){
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
                     <h6 class="my-0"><?php echo $row['Name']?></h6>
-                    <small class="text-body-secondary">₹<?php echo $row['price']?> x <?php echo $row['Quantity']?>Nos.</small>
+                    <small class="text-body-secondary">Rs.<?php echo $row['price']?> x <?php echo $row['Quantity']?>Nos.</small>
                     </div>
-                    <span class="text-body-secondary">₹<?php echo $row['price']*$row['Quantity'] ?></span>
+                    <span class="text-body-secondary">Rs.<?php echo $row['price']*$row['Quantity'] ?></span>
                 </li>
                 <?php
                     }
@@ -90,11 +91,11 @@ if(isset($_POST['Submit'])){
                     <h6 class="my-0">Delivery Charges</h6>
                     <small></small>
                     </div>
-                    <span class="text-danger">+<?php echo $charges=100?></span>
+                    <span class="text-danger">+Rs.<?php echo $charges=100?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between list-group-item-success">
                     <span>Total (INR)</span>
-                    <strong>₹<?php echo $total+$charges?></strong>
+                    <strong>Rs.<?php echo $total+$charges?></strong>
                 </li>
                 </ul>
                 </div>
@@ -110,7 +111,6 @@ if(isset($_POST['Submit'])){
 
     mysqli_query($conn,$insertOrder);
     
-
     }
 
 

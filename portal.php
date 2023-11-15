@@ -21,6 +21,7 @@ if(isLoggedIn()){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamazon</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> 
+    <script src="https://kit.fontawesome.com/d6f56984f1.js" crossorigin="anonymous"></script>
 </head>
 <body>
     
@@ -53,7 +54,7 @@ if(isLoggedIn()){
     }  ?>" alt="...">
     <!-- navbar cart -->
     <button class="navbar-toggler" id="cartBtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="text-light"><i class="fa-solid fa-cart-shopping"></i></span>
     </button>
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
@@ -78,21 +79,30 @@ if(isLoggedIn()){
 
 $values=getTableValues($conn,'products'); 
 while($arr=$values->fetch_assoc()){
-  echo '<div class="col">
+  ?><div class="col">
   <div class="card h-100 bg-warning-subtle" style="width: 18rem;">
-    <img src="files/'.$arr['imagepath'].'" class="card-img-top mx-auto w-50" alt="...">
+    <img src="files/<?php echo $arr['imagepath']?>" class="card-img-top mx-auto w-50" alt="...">
     <div class="card-body">
-      <h5 class="card-title">'.$arr['Name'].'</h5>
-      <p class="card-text">'.$arr['Description'].'</p>
-      <p class="card-text">₹'.$arr['Price'].'</p>
-      <p class="card-text text-primary-emphasis" >'.$arr['Stock_Status'].'</p>
-      <button id="'.$arr['id'].'" class="addToCart btn btn-primary">Add to cart</button>
+      <h5 class="card-title"><?php echo $arr['Name'];?></h5>
+      <p class="card-text"><?php echo $arr['Description'];?></p>
+      <p class="card-text">₹ <?php echo $arr['Price']; ?></p>
+      <?php 
+      if($arr['Stock_Status']=='in-stock')
+        echo '<p class="badge text-bg-success" >Stock Available</p>';
+      else
+        echo '<p class="badge text-bg-danger" >Stock Unvailable</p>';
+      
+      ?>
+      <p>Quantity:</p><input class="card-text mb-1" type="number" max="<?php echo $arr['Stock']?>" value=1>
+      <button id="<?php echo $arr['id']?>" class="addToCart btn btn-primary">Add to cart</button>
     </div>
   </div>
-  </div>';
-  
-  }?>
+  </div>
+  <?php
+  }
+  ?>
 </div>
+
 <!-- toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

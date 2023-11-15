@@ -1,13 +1,17 @@
 
 let allAddToCartBtn=document.getElementsByClassName('addToCart')
 const toastLiveExample = document.getElementById('liveToast')
-console.log(toastLiveExample)
 
 
 for(ele of allAddToCartBtn){
     ele.addEventListener('click',function(){
-        
-        addToCart(this.id,userId)
+        let quantity=this.previousElementSibling.value
+        this.previousElementSibling.value=1
+        if(quantity <=0){
+            quantity=1
+        }
+        console.log(quantity)
+        addToCart(this.id,userId,quantity)
         let myCartBtn=this
         myCartBtn.innerText='Added to cart'
         setTimeout(function(){
@@ -17,12 +21,13 @@ for(ele of allAddToCartBtn){
     })
 }
 
-function addToCart(pid,cid){
+function addToCart(pid,cid,quantity){
     const xhr =new XMLHttpRequest()
     xhr.open('POST','http://localhost/phpprojects/Ecommerce/api/addToCart.php')
     xhr.setRequestHeader('Content-type','text/json')
     xhr.send(`{
         "cid":${cid},
+        "quantity":${quantity},
         "pid":${pid}
     }`)
     xhr.onload=function(){

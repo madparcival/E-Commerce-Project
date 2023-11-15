@@ -10,7 +10,7 @@ if(isset($_POST['Product']) &&  isset($_POST['Price'])){
     $desc=$_POST['Description'];
     $stockQuantity=$_POST['stockQuantity'];
     $stockStatus='out-of-stock';
-    if(isset($_POST['stockStatus'])){
+    if(isset($_POST['stockStatus']) && $stockQuantity>0){
         $stockStatus='in-stock';
     }
     $pathToStore='../files/';

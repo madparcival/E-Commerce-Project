@@ -1,14 +1,15 @@
 <?php
 
 include('apiconn.php');
-$r= $_SERVER['REQUEST_METHOD'];
-if( $r =='POST'){
+$requestType= $_SERVER['REQUEST_METHOD'];
+if( $requestType =='POST'){
 
     header('Content-Type: text/json');
     if(file_get_contents('php://input')){
         
         $dataFromRequest=json_decode(file_get_contents('php://input'),true);
         $customer=$dataFromRequest['cid'];
+        $quantity=$dataFromRequest['quantity'];
         $productID=$dataFromRequest['pid'];
         
         $productRow=getRowFromTable($conn,$productID,'products');
@@ -18,13 +19,13 @@ if( $r =='POST'){
         // already present
         if( $result->num_rows != 0 ){
             $productQuantity=$result->fetch_assoc()['Quantity'];
-            $data=array("status"=>"increase","message"=>"Already In-cart");
-            $updateQuery="UPDATE `carts` SET Quantity=$productQuantity+1 WHERE CustomerID=$customer AND ProductID = $productID AND Status='in-cart';";
+            $data=array("status"=>"increase","message"=>"Already In-cart,Product Added");
+            $updateQuery="UPDATE `carts` SET Quantity=$productQuantity+$quantity WHERE CustomerID=$customer AND ProductID = $productID AND Status='in-cart';";
             mysqli_query($conn,$updateQuery);
             echo json_encode($data,true);
         }
         else{
-            $insertQuery="INSERT INTO `carts` (CustomerID,ProductID,Amount,Quantity,Status) VALUES ($customer,$productID,$productRow[Price],1,'in-cart');";
+            $insertQuery="INSERT INTO `carts` (CustomerID,ProductID,Amount,Quantity,Status) VALUES ($customer,$productID,$productRow[Price],$quantity,'in-cart');";
             
             if(mysqli_query($conn,$insertQuery)){
                 $data=array("status"=>"success","message"=>"Added to cart");
@@ -42,7 +43,7 @@ if( $r =='POST'){
     }
 }else{
     header("HTTP/1.1 405");
-    $data=array("status"=>"error","Request Method"=>$r,"message"=>"Bad Method");
+    $data=array("status"=>"error","Request Method"=>$requestType,"message"=>"Bad Method");
     echo json_encode($data,true);
 }
 

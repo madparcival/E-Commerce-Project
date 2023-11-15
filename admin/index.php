@@ -22,9 +22,13 @@ if(isAdmin()){
     
     .card-img-overlay{
       height: 60%;
+      width: 60%;
       border: white solid 2px;
       background-color: rgb(255, 255, 255,0.5);
       backdrop-filter: blur(4px);
+      text-align: center;
+      justify-content: center;
+      
     }
   </style>
 </head>
@@ -40,11 +44,11 @@ if(isAdmin()){
       ?>" alt="">
   <p><a href="index.php?logout" class="btn btn-dark link-light link-offset-2">Logout</a></p>
   
-<div class="row row-cols-1 row-cols-md-2 g-4">
+<div class="row row-cols-1 row-cols-md-2 g-4 mx-auto">
   <div class="col">
     <div class="card text-bg-light w-75">
-    <img src="imgs/cart.jpg" class="card-img">
-      <div class="card-img-overlay">
+    <img src="imgs/cart.jpg" class="card-img object-fit-cover" style="height:300px">
+      <div class="card-img-overlay m-auto">
         <h5 class="card-title">Orders
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
            <?php
@@ -53,36 +57,36 @@ if(isAdmin()){
            ?>
           </span>
         </h5>
-        <p><a class="btn btn-warning" href="#">Go to</a></p>  
+        <p><a class="btn btn-warning" href="orders.php">Go to</a></p>  
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card text-bg-dark w-75">
-      <img src="imgs/products.jpg" class="card-img" alt="...">
-      <div class="card-img-overlay">
+    <div class="card text-bg-light w-75">
+      <img src="imgs/products.jpg" class="card-img object-fit-cover" style="height:300px" alt="...">
+      <div class="card-img-overlay m-auto">
         <h5 class="card-title">Products</h5>
         <p><a class="btn btn-warning" href="products.php">Go to</a></p>
         </div>
     </div>
   </div>
-  <!-- <div class="col">
+  <div class="col">
     <div class="card text-bg-dark w-75">
-      <img src="..." class="card-img" alt="...">
-      <div class="card-img-overlay">
-        <h5 class="card-title">Users/Customers</h5>
-        <p><a class="btn btn-warning" href="#">Go to</a></p>
+      <img src="imgs/users.jpg" class="card-img object-fit-cover" style="height:300px" alt="...">
+      <div class="card-img-overlay m-auto">
+        <h5 class="card-title text-dark">Users/Customers</h5>
+        <p><a class="btn btn-warning" href="allusers.php">Go to</a></p>
         </div>
     </div>
-  </div> -->
+  </div>
   <?php
   if($_SESSION['Name']=='root'){
   
   ?>
   <div class="col">
     <div class="card text-bg-dark w-75">
-      <img src="imgs/admin.jpg" class="card-img" alt="...">
-      <div class="card-img-overlay">
+      <img src="imgs/admin-rainbow.jpg" class="card-img object-fit-cover" style="height:300px" alt="...">
+      <div class="card-img-overlay m-auto">
         <h5 class="card-title text-dark">Admin Add/Revoke</h5>
         <p><a class="btn btn-warning" href="admins.php">Go to</a></p>
       </div>
