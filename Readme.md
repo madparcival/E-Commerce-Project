@@ -3,22 +3,28 @@
 ## How to use
 
 ### - Requirements
->> - Xampp
+> - Xampp
 
 ### - Steps
 > **step1** 
->Clone this repository
+>
+> Clone this repository
 >
 > **step2** 
+>
 > Put the files in your htdocs folder start Apache and MySQL in xampp
 >
 > **step3** 
+>
 > Inside the repository Create etc\cred.json file
 >
 > **step4** 
+>
 > Inside your phpmyadmin Create A Database of your choice and import the migrations.sql
 >
-> **step5** Paste the following and edit your creds
+> **step5** 
+>
+> Paste the following and edit your creds
 >
 ```json
  {
@@ -30,9 +36,11 @@
 ```
 >
 > **step6** 
+>
 > Locate your folder in browser and open portal.php
 >
 > ***Admin Panel*** 
+>
 > Put "/admin" after your url
 >
 > eg. *http://localhost/ecommerce/admin*
